@@ -15,8 +15,10 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="container">
-      <h1 className="my-4 text-center">Lista Giochi da Tavolo</h1>
+    <div className="container py-5">
+      <h1 className="mb-5 text-center display-5 fw-semibold text-dark">
+        Lista Giochi da Tavolo
+      </h1>
       <div className="d-flex flex-wrap justify-content-center">
         {games.map((game) => (
           <GameCard key={game.id} game={game} />

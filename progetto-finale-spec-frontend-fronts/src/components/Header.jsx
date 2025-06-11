@@ -1,11 +1,14 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 
 export default function Header() {
   return (
     <header>
-      <nav className="navbar navbar-expand navbar-light bg-light">
-        <div className="nav navbar-nav">
-          <NavLink className="nav-item nav-link" to="/">
+      <nav className="navbar navbar-light bg-light shadow-sm">
+        <div className="container">
+          <NavLink className="navbar-brand fw-bold" to="/">
+            🎲 FantasyGame
+          </NavLink>
+          <NavLink className="nav-link" to="/">
             Home
           </NavLink>
         </div>
