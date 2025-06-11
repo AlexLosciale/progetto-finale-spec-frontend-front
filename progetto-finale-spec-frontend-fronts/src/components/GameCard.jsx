@@ -1,13 +1,20 @@
 export default function GameCard({ game }) {
     return (
-      <div className="card m-3 shadow-sm border-0 rounded-4" style={{ width: "18rem" }}>
+      <div
+        className="card m-3 rounded-4 shadow-sm"
+        style={{ width: "18rem" }}
+      >
         {game.imageUrl && (
           <img
-          src={game.imageUrl}
-          className="card-img-top rounded-top-4"
-          alt={game.title}
-          style={{ height: "180px", objectFit: "contain", backgroundColor: "#f8f9fa" }}
-        />
+            src={game.imageUrl}
+            className="card-img-top rounded-top-4"
+            alt={game.title}
+            style={{
+              height: "180px",
+              objectFit: "contain",
+              backgroundColor: "#f8f9fa"
+            }}
+          />
         )}
         <div className="card-body bg-light rounded-bottom-4">
           <h5 className="card-title fw-bold text-primary">{game.title}</h5>
@@ -19,6 +26,5 @@ export default function GameCard({ game }) {
         </div>
       </div>
     );
-}
+  }
   
-        
