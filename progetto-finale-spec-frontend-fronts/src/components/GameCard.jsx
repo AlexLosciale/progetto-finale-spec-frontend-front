@@ -1,8 +1,11 @@
+import { Link } from 'react-router-dom';
+
 export default function GameCard({ game }) {
-    return (
+  return (
+    <Link to={`/boardgames/${game.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
       <div
         className="card m-3 rounded-4 shadow-sm"
-        style={{ width: "18rem" }}
+        style={{ width: "18rem", cursor: "pointer" }}
       >
         {game.imageUrl && (
           <img
@@ -25,6 +28,6 @@ export default function GameCard({ game }) {
           </p>
         </div>
       </div>
-    );
-  }
-  
+    </Link>
+  );
+}
