@@ -1,6 +1,6 @@
 export default function Footer() {
     return (
-      <footer className="bg-dark text-light text-center py-4 mt-5">
+      <footer className="text-light text-center py-4 mt-5 bg-dark">
         <div className="container">
           <p className="mb-1 fw-semibold">
             &copy; {new Date().getFullYear()} <span className="text-warning">FantasyGame</span>

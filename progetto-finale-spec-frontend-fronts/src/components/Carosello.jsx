@@ -3,7 +3,7 @@ export default function Carosello({ games }) {
   
     return (
       <div className="mb-5">
-        <h2 className="mb-5 text-center display-5 fw-semibold text-dark">
+        <h2 className="mb-5 text-center display-5 fw-semibold">
           Ultimi Giochi da Tavolo
         </h2>
   
@@ -11,7 +11,7 @@ export default function Carosello({ games }) {
           id="carouselExampleCaptions"
           className="carousel slide rounded-4 overflow-hidden shadow"
           data-bs-ride="carousel"
-          style={{ backgroundColor: "#444" }}
+          style={{ backgroundColor: "#eeecec" }}
         >
           <div className="carousel-indicators">
             {games.map((_, index) => (
