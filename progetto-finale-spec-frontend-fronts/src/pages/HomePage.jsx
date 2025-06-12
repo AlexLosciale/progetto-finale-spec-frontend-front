@@ -96,7 +96,15 @@ export default function HomePage() {
             className="btn btn-primary"
             onClick={() => setShowAll(!showAll)}
           >
-            {showAll ? "Chiudi" : "Altro"}
+            {showAll ? (
+              <>
+                Chiudi <i className="bi bi-arrow-up ms-2"></i>
+              </>
+            ) : (
+              <>
+                Altro <i className="bi bi-arrow-down ms-2"></i>
+              </>
+            )}
           </button>
         </div>
       )}
