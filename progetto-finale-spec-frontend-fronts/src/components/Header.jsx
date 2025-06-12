@@ -4,10 +4,10 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 export default function Header() {
   return (
     <header>
-      <nav className="navbar navbar-light bg-white shadow-sm fixed-top border-bottom">
+      <nav className="navbar navbar-light sfondo3 shadow-sm fixed-top border-bottom">
         <div className="container d-flex justify-content-between align-items-center">
           <NavLink className="navbar-brand fw-bold" to="/">
-            🎲 FantasyGame
+            <img src="/fantasyGame.png" alt="logo" style={{ width: "120px", height: "auto" }}/>
           </NavLink>
 
           <div className="d-flex align-items-center gap-3">
