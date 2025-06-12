@@ -10,6 +10,7 @@ export default function HomePage() {
   const [errorMessage, setErrorMessage] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [sortOrder, setSortOrder] = useState("A-Z");
+  const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
     fetch("http://localhost:3001/boardgames")
@@ -50,6 +51,7 @@ export default function HomePage() {
     });
 
     setGames(filtered);
+    setShowAll(false);
   };
 
   const handleSubmit = (e) => {
@@ -60,6 +62,8 @@ export default function HomePage() {
   useEffect(() => {
     filterAndSortGames();
   }, [selectedCategory, sortOrder]);
+
+  const gamesToShow = showAll ? games : games.slice(0, 9);
 
   return (
     <div className="container py-5">
@@ -81,11 +85,21 @@ export default function HomePage() {
       />
 
       <div className="d-flex flex-wrap justify-content-center gap-3">
-        {games.map((game) => (
+        {gamesToShow.map((game) => (
           <GameCard key={game.id} game={game} />
         ))}
       </div>
-      
+
+      {games.length > 9 && (
+        <div className="text-center mt-4">
+          <button
+            className="btn btn-primary"
+            onClick={() => setShowAll(!showAll)}
+          >
+            {showAll ? "Chiudi" : "Altro"}
+          </button>
+        </div>
+      )}
     </div>
   );
 }
