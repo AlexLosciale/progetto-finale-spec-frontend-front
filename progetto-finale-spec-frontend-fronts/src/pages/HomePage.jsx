@@ -4,6 +4,9 @@ import Carosello from "../components/Carosello";
 
 export default function HomePage() {
   const [games, setGames] = useState([]);
+  const [allGames, setAllGames] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:3001/boardgames")
@@ -12,15 +15,37 @@ export default function HomePage() {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
         setGames(data);
+        setAllGames(data);
       })
       .catch((err) => console.error(err));
   }, []);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (inputValue.trim() === "") {
+      setGames(allGames);
+      setErrorMessage("");
+      return;
+    }
+
+    const filteredGames = allGames.filter((game) =>
+      game.title.toLowerCase().includes(inputValue.toLowerCase())
+    );
+
+    if (filteredGames.length === 0) {
+      setErrorMessage("Nessun gioco trovato con questo nome.");
+    } else {
+      setErrorMessage("");
+    }
+
+    setGames(filteredGames);
+  };
+
   return (
     <div className="container py-5">
-      <Carosello games={games} />
+      <Carosello games={allGames} />
 
       <h1 className="mb-5 text-center display-5 fw-semibold text-dark">
         Lista Giochi da Tavolo
@@ -29,36 +54,27 @@ export default function HomePage() {
       <form
         className="d-flex flex-column align-items-center gap-3 mb-4"
         style={{ maxWidth: "600px", margin: "0 auto" }}
+        onSubmit={handleSubmit}
       >
-
         <div className="d-flex w-100">
           <input
             type="text"
             className="form-control me-2"
             placeholder="Cerca un gioco..."
             aria-label="Cerca un gioco"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
           />
           <button type="submit" className="btn btn-primary">
             Cerca
           </button>
         </div>
 
-        <div className="d-flex gap-2 w-100">
-          <select className="form-select" aria-label="Filtra per categoria">
-            <option value="">Tutte le categorie</option>
-            <option value="Strategia">Strategia</option>
-            <option value="Party Game">Party Game</option>
-            <option value="Piazzamento Tessere">Piazzamento Tessere</option>
-            <option value="Astratto">Astratto</option>
-            <option value="Cooperativo">Cooperativo</option>
-            <option value="Strategia Asimmetrica">Strategia Asimmetrica</option>
-          </select>
-
-          <select className="form-select" aria-label="Ordina per">
-            <option value="popolarità">A-Z</option>
-            <option value="data">Z-A</option>
-          </select>
-        </div>
+        {errorMessage && (
+          <div className="alert alert-warning text-center w-100" role="alert">
+            {errorMessage}
+          </div>
+        )}
       </form>
 
       <div className="d-flex flex-wrap justify-content-center gap-3">
