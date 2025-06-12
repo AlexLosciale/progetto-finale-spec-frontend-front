@@ -1,10 +1,21 @@
+import { useContext } from 'react';
+import { GlobalContext } from '../context/GlobalContext';
 import { Link } from 'react-router-dom';
-import 'bootstrap-icons/font/bootstrap-icons.css';
 
 export default function GameCard({ game }) {
+  const { likedGames, toggleLikeGame } = useContext(GlobalContext);
+
+  const liked = likedGames.includes(game.id);
+
+  const handleHeartClick = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    toggleLikeGame(game.id);
+  };
+
   return (
-    <Link 
-      to={`/boardgames/${game.id}`} 
+    <Link
+      to={`/boardgames/${game.id}`}
       style={{ textDecoration: 'none', color: 'inherit' }}
       className="game-card-link"
     >
@@ -30,18 +41,16 @@ export default function GameCard({ game }) {
               }}
             />
           )}
-          <i
-            className="bi bi-heart position-absolute text-secondary d-flex justify-content-center align-items-center"
-            style={{
-              top: "12px",
-              right: "10px",
-              width: "30px",
-              height: "30px",
-              backgroundColor: "#e0e0e0",
-              borderRadius: "50%",
-              fontSize: "1rem"
-            }}
-          ></i>
+          <button
+            className='position-absolute top-0 end-0 btn btn-light rounded-circle m-2 shadow-sm'
+            style={{ zIndex: 1 }}
+            onClick={handleHeartClick}
+          >
+            <i
+              className={`bi ${liked ? 'bi-heart-fill text-primary' : 'bi-heart text-secondary'}`}
+              style={{ fontSize: "1rem" }}
+            ></i>
+          </button>
         </div>
 
         <div className="card-body bg-light rounded-bottom-4">
