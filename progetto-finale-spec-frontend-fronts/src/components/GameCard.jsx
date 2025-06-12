@@ -25,7 +25,8 @@ export default function GameCard({ game }) {
               style={{
                 height: "180px",
                 objectFit: "contain",
-                backgroundColor: "#f8f9fa"
+                backgroundColor: "#f8f9fa",
+                paddingTop: "8px"
               }}
             />
           )}
