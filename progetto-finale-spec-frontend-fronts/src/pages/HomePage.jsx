@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import GameCard from "../components/GameCard";
 import Carosello from "../components/Carosello";
 import Form from "../components/Form";
+import GameComp from "../components/GameComp";
 
 export default function HomePage() {
   const [games, setGames] = useState([]);
@@ -11,6 +12,7 @@ export default function HomePage() {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [sortOrder, setSortOrder] = useState("A-Z");
   const [showAll, setShowAll] = useState(false);
+  const [selectedGames, setSelectedGames] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:3001/boardgames")
@@ -53,6 +55,18 @@ export default function HomePage() {
     setGames(filtered);
     setShowAll(false);
   };
+
+  const handleCheckboxChange = (game) => {
+    setSelectedGames((prev) => {
+      if (prev.find((g) => g.id === game.id)) {
+        return prev.filter((g) => g.id !== game.id);
+      }
+      if (prev.length < 2) {
+        return [...prev, game];
+      }
+        return prev;
+      });
+    };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -108,6 +122,13 @@ export default function HomePage() {
           </button>
         </div>
       )}
+      <div className="my-5">
+        <GameComp
+          allGames={allGames}
+          selectedGames={selectedGames}
+          handleCheckboxChange={handleCheckboxChange}
+        />
+      </div>
     </div>
   );
 }
