@@ -122,6 +122,20 @@ export default function HomePage() {
           </button>
         </div>
       )}
+
+      <div className="text-center my-5">
+        <img
+          src="/Sconto.png"
+          alt="Banner sconto Fantasy Game"
+          className="img-fluid rounded shadow"
+          style={{
+            width: "100%",
+            maxWidth: "1200px",
+            height: "auto",
+          }}
+        />
+      </div>
+
       <div className="my-5">
         <GameComp
           allGames={allGames}
