@@ -1,9 +1,16 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
 
 export const GlobalContext = createContext();
 
 export function GlobalProvider({ children }) {
-  const [likedGames, setLikedGames] = useState([]);
+  const [likedGames, setLikedGames] = useState(() => {
+    const saved = localStorage.getItem('likedGames');
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('likedGames', JSON.stringify(likedGames));
+  }, [likedGames]);
 
   const toggleLikeGame = (gameId) => {
     setLikedGames((prevLikedGames) => {
