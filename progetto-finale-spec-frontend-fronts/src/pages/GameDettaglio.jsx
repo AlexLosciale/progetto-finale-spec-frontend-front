@@ -6,13 +6,17 @@ export default function GameDettaglio() {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:3001/boardgames/${id}`)
-      .then((res) => {
-        if (!res.ok) throw new Error("Errore nel caricamento");
-        return res.json();
-      })
-      .then((data) => setGame(data.boardgame)) 
-      .catch((err) => console.error(err));
+    const fetchGame = async () => {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/boardgames/${id}`);
+        if (!response.ok) throw new Error("Errore nel caricamento");
+        const data = await response.json();
+        setGame(data.boardgame);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchGame();
   }, [id]);
 
   if (!game) 

@@ -15,7 +15,7 @@ export default function HomePage() {
   const [selectedGames, setSelectedGames] = useState([]); // Stato per i giochi selezionati per il confronto
 
   useEffect(() => {
-    fetch("http://localhost:3001/boardgames")
+    fetch(import.meta.env.VITE_APP_API_URL + "/boardgames")
       .then((res) => {
         if (!res.ok) throw new Error("Errore nel caricamento");
         return res.json();
@@ -144,7 +144,7 @@ export default function HomePage() {
           handleCheckboxChange={handleCheckboxChange}
         />
       </div>
-      
+
     </div>
   );
 }
