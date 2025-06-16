@@ -9,3 +9,13 @@
 .sfondo3{
     background-color: #f7f4f0;
 }
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.no-hover-scale.card:hover {
+    transform: none !important;
+    box-shadow: none !important;
+}

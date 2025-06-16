@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 export default function GameDettaglio() {
   const [game, setGame] = useState(null);
@@ -27,7 +27,7 @@ export default function GameDettaglio() {
     <div className="container py-5">
       <h1 className="mb-4 text-center">{game.title}</h1>
 
-      <div className="card shadow-sm rounded p-3" style={{ maxWidth: "720px", margin: "0 auto" }}>
+      <div className="card no-hover-scale shadow-sm rounded p-3" style={{ maxWidth: "720px", margin: "0 auto" }}>
         <div className="d-flex">
 
           <img
