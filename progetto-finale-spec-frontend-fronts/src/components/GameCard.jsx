@@ -3,14 +3,14 @@ import { GlobalContext } from '../context/GlobalContext';
 import { useNavigate } from 'react-router-dom';
 
 export default function GameCard({ game }) {
-  const { likedGames, toggleLikeGame } = useContext(GlobalContext);
+  const { likedGames, toggleLikeGame } = useContext(GlobalContext); // Ottieni i giochi preferiti e la funzione per togglare il like dal contesto globale
   const navigate = useNavigate();
 
-  const liked = likedGames.includes(game.id);
+  const liked = likedGames.includes(game.id); // Controlla se il gioco è nei preferiti
 
-  const handleHeartClick = (event) => {
+  const handleHeartClick = (event) => { // Gestore del click sul cuore per togglare il like
     event.preventDefault();
-    event.stopPropagation();
+    event.stopPropagation(); // Ferma la propagazione dell'evento per evitare di attivare il click sul card
     toggleLikeGame(game.id);
   };
 
@@ -19,15 +19,16 @@ export default function GameCard({ game }) {
   };
 
   return (
-    <div
+    <div  
       className="card m-3 rounded-4 shadow-sm"
-      onClick={handleCardClick}
+      onClick={handleCardClick} //navigare alla pagina del gioco
       style={{
         width: "18rem",
         cursor: "pointer",
         transition: "transform 0.3s ease, box-shadow 0.3s ease",
       }}
     >
+
       <div className="position-relative">
         {game.imageUrl && (
           <img
@@ -42,6 +43,7 @@ export default function GameCard({ game }) {
             }}
           />
         )}
+
         <button
           className="position-absolute top-0 end-0 btn btn-light rounded-circle m-2 shadow-sm"
           style={{ zIndex: 1 }}
@@ -62,6 +64,7 @@ export default function GameCard({ game }) {
           <strong>Durata:</strong> {game.durationMinutes} min
         </p>
       </div>
+
     </div>
   );
 }

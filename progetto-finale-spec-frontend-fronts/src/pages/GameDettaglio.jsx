@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom"; // Import useParams per ottenere l'ID del gioco dalla URL
 
 export default function GameDettaglio() {
-  const [game, setGame] = useState(null);
+  const [game, setGame] = useState(null); 
   const { id } = useParams();
 
   useEffect(() => {
@@ -11,15 +11,18 @@ export default function GameDettaglio() {
         if (!res.ok) throw new Error("Errore nel caricamento");
         return res.json();
       })
-      .then((data) => setGame(data.boardgame))
+      .then((data) => setGame(data.boardgame)) 
       .catch((err) => console.error(err));
   }, [id]);
 
-  if (!game)
-    return (
+  if (!game) 
+    return ( 
+      /* messaggio in attesa della risposta del fetch */
       <div className="d-flex justify-content-center align-items-center vh-100">
-        <div className="spinner-border" role="status" aria-hidden="true"></div>
-        <span className="ms-2">Caricamento...</span>
+        <div>
+          <div className="spinner-border" role="status" aria-hidden="true"></div>
+          <span className="ms-2">Caricamento...</span> 
+        </div>
       </div>
     );
 
