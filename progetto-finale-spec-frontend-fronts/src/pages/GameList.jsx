@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useMemo } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import GameCard from "../components/GameCard";
 
@@ -23,7 +23,9 @@ export default function GameList() {
       });
   }, []);
 
-  const favoriteGames = allGames.filter(game => likedGames.includes(game.id));
+  const favoriteGames = useMemo(() => {
+    return likedGames.length > 0 ? allGames.filter(game => likedGames.includes(game.id)) : [];
+  }, [likedGames, allGames]);
 
   if (loading) return <p>Caricamento giochi preferiti...</p>;
 

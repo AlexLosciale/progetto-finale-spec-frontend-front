@@ -37,48 +37,48 @@ export default function GameComp({ allGames, selectedGames, handleCheckboxChange
           ))}
         </ul>
   
-        <div className="row mb-5">
-          {[0, 1].map((index) => (
+        {selectedGames.length >0 && (<div className="row mb-5">
+          {selectedGames.map((game, index) => (
             <div className="col-md-6 mb-4" key={index}>
               <div className="border p-4 rounded bg-light shadow-sm">
                 <h2 className="mb-4 text-center display-6 fw-semibold text-dark">
                   GIOCO {index + 1}
                 </h2>
-                {selectedGames[index] ? (
+                {game? (
                   <>
-                    <h4 className="text-primary card-title fw-bold">{selectedGames[index].title}</h4>
+                    <h4 className="text-primary card-title fw-bold">{game.title}</h4>
                     <ul className="list-group list-group-flush w-100 mt-3">
                       <li className="list-group-item px-0 py-1">
-                        <strong>Categoria:</strong> {selectedGames[index].category}
+                        <strong>Categoria:</strong> {game.category}
                       </li>
                       <li className="list-group-item px-0 py-1">
                         <strong>Giocatori:</strong>{" "}
-                        {selectedGames[index].minPlayers} - {selectedGames[index].maxPlayers}
+                        {game.minPlayers} - {game.maxPlayers}
                       </li>
                       <li className="list-group-item px-0 py-1">
-                        <strong>Durata:</strong> {selectedGames[index].durationMinutes} min
+                        <strong>Durata:</strong> {game.durationMinutes} min
                       </li>
                       <li className="list-group-item px-0 py-1">
-                        <strong>Editore:</strong> {selectedGames[index].publisher}
+                        <strong>Editore:</strong> {game.publisher}
                       </li>
                       <li className="list-group-item px-0 py-1">
-                        <strong>Anno di uscita:</strong> {selectedGames[index].releaseYear}
+                        <strong>Anno di uscita:</strong> {game.releaseYear}
                       </li>
                       <li className="list-group-item px-0 py-1">
-                        <strong>Età consigliata:</strong> {selectedGames[index].ageRecommended}+
+                        <strong>Età consigliata:</strong> {game.ageRecommended}+
                       </li>
                       <li className="list-group-item px-0 py-1">
-                        <strong>Descrizione:</strong> {selectedGames[index].description}
+                        <strong>Descrizione:</strong> {game.description}
                       </li>
                     </ul>
                   </>
                 ) : (
-                  <p className="text-muted text-center">Nessun gioco selezionato</p>
+									<p className="text-muted">Nessun gioco selezionato.</p>
                 )}
               </div>
             </div>
           ))}
-        </div>
+        </div>)}
       </div>
     );
   }
