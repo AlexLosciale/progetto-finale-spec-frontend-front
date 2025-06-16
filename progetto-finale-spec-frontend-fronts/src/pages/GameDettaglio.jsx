@@ -8,7 +8,7 @@ export default function GameDettaglio() {
   useEffect(() => {
     const fetchGame = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/boardgames/${id}`);
+        const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/boardgames/${id}`); //Utilizza l'ID del gioco dalla URL
         if (!response.ok) throw new Error("Errore nel caricamento");
         const data = await response.json();
         setGame(data.boardgame);
